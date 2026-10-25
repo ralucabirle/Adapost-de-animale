@@ -1,0 +1,51 @@
+erDiagram
+    SECTOARE ||--o{ ANIMALE : gazdueste
+    ANIMALE ||--o| ADOPTII : este_adoptat
+    ADOPTATORI ||--o{ ADOPTII : efectueaza
+    ANIMALE ||--o{ FISE_MEDICALE : detine
+
+    SECTOARE {
+        int id_sector PK
+        string denumire
+        int capacitate_maxima
+    }
+
+    ANIMALE {
+        int id_animal PK
+        string nume
+        string specie
+        string rasa
+        int varsta_ani
+        string sex
+        boolean sterilizat
+        string numar_microcip UK
+        string status
+        int id_sector FK
+    }
+
+    ADOPTATORI {
+        int id_adoptator PK
+        string nume
+        string prenume
+        string cnp UK
+        string telefon
+        string email
+        text adresa
+    }
+
+    ADOPTII {
+        int id_adoptie PK
+        int id_animal FK, UK
+        int id_adoptator FK
+        date data_adoptie
+        string numar_contract UK
+    }
+
+    FISE_MEDICALE {
+        int id_fisa PK
+        int id_animal FK
+        date data_consultatie
+        text diagnostic
+        text tratament
+        string nume_veterinar
+    }
